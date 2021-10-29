@@ -44,22 +44,7 @@ const Header = () => {
             <span className="shop">shop</span>
           </div>
           <div className="row">
-            <div
-              className="sign-in"
-              onClick={() => {
-                setPopupSignin(true);
-              }}
-            >
-              Sign In
-            </div>
-            <div
-              className="sign-in"
-              onClick={() => {
-                setPopupSignup(true);
-              }}
-            >
-              Sign Up
-            </div>
+      
             <span className="sign-in" onClick={signOutButton}>
               Logout
             </span>
