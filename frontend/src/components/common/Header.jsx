@@ -4,18 +4,32 @@ import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import SignUp from "../../containers/SignUp";
 import SignIn from "../../containers/SignIn";
+import { signOut } from "../../reducks/users/operations";
 
 const Header = () => {
   const [popupSignin, setPopupSignin] = useState(false);
   const [popupSignup, setPopupSignup] = useState(false);
+  const [loginbutton, setloginbutton] = useState(false);
   useEffect(() => {
     const key = localStorage.getItem("CYBERSHOP_LOGIN_USER_KEY");
     if (!key) {
-      console.log(key);
       setPopupSignin(true);
     }
   }, []);
+  useEffect(() => {
+    const key = localStorage.getItem("CYBERSHOP_LOGIN_USER_KEY");
+    if (key) {
+      setPopupSignin(true);
+    }
+  }, [loginbutton]);
   const dispatch = useDispatch();
+  const signOutButton = () => {
+    dispatch(signOut());
+    setPopupSignin(true);
+  };
+  const key = localStorage.getItem("CYBERSHOP_LOGIN_USER_KEY");
+  if (!key) {
+  }
   return (
     <>
       <header>
@@ -46,6 +60,9 @@ const Header = () => {
             >
               Sign Up
             </div>
+            <span className="sign-in" onClick={signOutButton}>
+              Logout
+            </span>
             <img
               className="cart-icon"
               src={ImageDribbleLightPreview}
