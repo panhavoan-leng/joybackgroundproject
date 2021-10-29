@@ -23,7 +23,7 @@ const Index = () => {
 
   return (
     <>
-      
+      <Header />
       <div>
         <section className="main-visual">
           <img className="top" src={ImgTvPicTop} />

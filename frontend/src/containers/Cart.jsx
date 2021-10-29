@@ -22,7 +22,7 @@ export default function Cart() {
   }, []);
   return (
     <>
-      
+      <Header />
       {/* <!-- Main Visual --> */}
       <section className="main-visual">
         <img className="top" src={ImgCover} alt="" />
