@@ -12,13 +12,13 @@ const SignIn = ({ trigger, setTrigger, setsignup }) => {
   const inputPassword = (event) => {
     setPassword(event.target.value);
   };
-  const submitButton = async (event) => {
+  const submitButton = (event) => {
     event.preventDefault();
     dispatch(signIn(email, password));
     setEmail("");
     setPassword("");
     const key = localStorage.getItem("CYBERSHOP_LOGIN_USER_KEY");
-    if (key) {
+    if (!key) {
       console.log(key);
       setTrigger(false);
     }

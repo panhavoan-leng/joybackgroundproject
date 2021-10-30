@@ -27,7 +27,6 @@ function App() {
   }, []);
   return (
     <>
-      
       <Router />
       {showFooter && <Footer price={subtotal} />}
     </>
