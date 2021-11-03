@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ImgSony256 from "../assets/img/sony-256.png";
@@ -16,10 +16,13 @@ const Index = () => {
   const selector = useSelector((state) => state);
   const products = getProducts(selector);
   const carts = getCarts(selector);
+  const key = localStorage.getItem("CYBERSHOP_LOGIN_USER_KEY");
   useEffect(() => {
-    dispatch(fetchProducts());
-    dispatch(fetchCarts());
-  }, []);
+    if (key) {
+      dispatch(fetchProducts());
+      dispatch(fetchCarts());
+    }
+  }, [key]);
 
   return (
     <>

@@ -7,24 +7,23 @@ import SignIn from "../../containers/SignIn";
 import { signOut } from "../../reducks/users/operations";
 
 const Header = () => {
-  const [popupSignin, setPopupSignin] = useState(false);
+  const [popupSignin, setPopupSignin] = useState(true);
   const [popupSignup, setPopupSignup] = useState(false);
   const [loginbutton, setloginbutton] = useState(false);
+
   useEffect(() => {
     const key = localStorage.getItem("CYBERSHOP_LOGIN_USER_KEY");
     if (key) {
       setPopupSignin(false);
     }
-  }, []);
+  });
 
   const dispatch = useDispatch();
   const signOutButton = () => {
     dispatch(signOut());
     setPopupSignin(true);
   };
-  const key = localStorage.getItem("CYBERSHOP_LOGIN_USER_KEY");
-  if (!key) {
-  }
+
   return (
     <>
       <header>

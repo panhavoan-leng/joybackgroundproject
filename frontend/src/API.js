@@ -1,7 +1,7 @@
 import axios from "axios";
 var baseURL;
 const LOGIN_USER_KEY = "CYBERSHOP_LOGIN_USER_KEY";
-baseURL = "http://127.0.0.1:8000";
+baseURL = "https://mini-ecommerce-backend.herokuapp.com";
 const api = axios.create({
   baseURL: baseURL,
   headers: {

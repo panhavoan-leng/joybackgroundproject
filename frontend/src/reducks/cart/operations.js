@@ -71,7 +71,7 @@ export const decreaseCart = (cart_id) => {
     let prevCarts = getState().carts.list;
     let matchedCarts = prevCarts.filter((cart) => cart.id === cart_id);
     let nextSelectedCount = matchedCarts[0].quantity - 1;
-    if (nextSelectedCount > 0) {
+    if (nextSelectedCount >= 0) {
       // if quantity is more than 0, update
       return api
         .updateCarts(cart_id, nextSelectedCount)

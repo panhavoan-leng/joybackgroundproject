@@ -47,7 +47,12 @@ const CartItem = ({ item }) => {
   return (
     <>
       <li key={item.id}>
-        <img src={item.image} className="item-image" alt="" />
+        {console.log(item.image)}
+        <img
+          src={"https://res.cloudinary.com/techis/" + item.image}
+          className="item-image"
+          alt=""
+        />
         <div className="info">
           <div className="name">{item.name}</div>
 

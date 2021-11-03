@@ -6,7 +6,7 @@ import {
   decreaseCart,
   fetchCarts,
 } from "../../reducks/cart/operations";
-import { getCarts, getSubtotal } from "../../reducks/cart/selectors";
+import { getSubtotal } from "../../reducks/cart/selectors";
 import { push } from "connected-react-router";
 
 const Item = ({ product, carts }) => {
@@ -15,6 +15,7 @@ const Item = ({ product, carts }) => {
   const subtotal = getSubtotal(selector);
   const [particularCart, setParticularCart] = useState(null);
   const key = localStorage.getItem("CYBERSHOP_LOGIN_USER_KEY");
+
   useEffect(() => {
     if (carts.length > 0) {
       const matchedCarts = carts.filter(
@@ -22,7 +23,8 @@ const Item = ({ product, carts }) => {
       );
       if (matchedCarts.length > 0) {
         setParticularCart(matchedCarts[0]);
-      } else {
+      }
+      if (matchedCarts.length == 0) {
         setParticularCart(null);
       }
     }
@@ -30,8 +32,13 @@ const Item = ({ product, carts }) => {
 
   const clickAddCart = async () => {
     if (key) {
-      await dispatch(addCart(product));
-      await dispatch(fetchCarts());
+      if (particularCart == null) {
+        await dispatch(addCart(product));
+        await dispatch(fetchCarts());
+      } else {
+        await dispatch(increaseCart(particularCart.id));
+        await dispatch(fetchCarts());
+      }
     } else {
       dispatch(push("/signin"));
     }
@@ -53,14 +60,15 @@ const Item = ({ product, carts }) => {
 
         <div className="info-bottom">
           <div className="price">{product.price}</div>
-          {!particularCart ? (
+          {particularCart == null || particularCart.quantity < 1 ? (
             <div className="add" onClick={clickAddCart}>
               Add +
             </div>
           ) : (
             <div className="number">
+              {console.log(particularCart.quantity)}
               <span className="minus" onClick={clickMinusCart}>
-                －
+                -
               </span>
               <span className="count">{particularCart.quantity}</span>
               <span className="plus" onClick={clickPlusCart}>
