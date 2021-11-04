@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
-
+# installed app
 INSTALLED_APPS = [
     # To allow CORS (Cross-origin resource sharing)
     'corsheaders',
