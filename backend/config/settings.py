@@ -47,10 +47,7 @@ INSTALLED_APPS = [
     'apps.posts',
     'cloudinary',
     'django_filters',
-    'apps.user',
-    'apps.order',
-    'apps.cart',
-    'apps.items'
+    
 ]
 
 MIDDLEWARE = [
