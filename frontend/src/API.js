@@ -1,10 +1,18 @@
 import axios from "axios";
+require("dotenv").config();
 
-var baseURL;
-if (process.env.REACT_APP_ENVIRONMENT && process.env.REACT_APP_ENVIRONMENT === "PRODUCTION") {
-    baseURL = process.env.REACT_APP_API_BASE_URL;
+export const LOGIN_USER_KEY = "HIVE_TECHWEAR_LOGIN_USER_KEY";
+const {
+  REACT_APP_ENVIRONMENT,
+  REACT_APP_API_BASE_URL_PROD,
+  REACT_APP_API_BASE_URL_DEV,
+} = process.env;
+let baseURL;
+
+if (REACT_APP_ENVIRONMENT === "PRODUCTION") {
+  baseURL = REACT_APP_API_BASE_URL_PROD;
 } else {
-    baseURL = "https://back-end-jb.herokuapp.com/";
+  baseURL = REACT_APP_API_BASE_URL_DEV;
 }
 
 const api = axios.create({
@@ -15,41 +23,41 @@ const api = axios.create({
 });
 
 export default class API {
-    getPosts = async () => {
-        const posts = await api
-            .get("/posts/")
-            .then((response) => {
-                return response.data
-            })
-            .catch((error) => {
-                throw new Error(error)
-            })
-        return posts
-    }
-    addPost = async (name, body, image) => {
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("body", body);
-        formData.append("image", image);
-        const savedPost = await api
-            .post("/posts/add/", formData)
-            .then((response) => {
-                return response.data
-            })
-            .catch((error) => {
-                throw new Error(error)
-            })
-        return savedPost
-    }
-    deletePost = async (id) => {
-        const response = await api
-            .delete("/posts/delete/" + id + "/")
-            .then((response) => {
-                return response.data
-            })
-            .catch((error) => {
-                throw new Error(error)
-            })
-        return response
-    }
+  getPosts = async () => {
+    const posts = await api
+      .get("/posts/")
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+    return posts;
+  };
+  addPost = async (name, body, image) => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("body", body);
+    formData.append("image", image);
+    const savedPost = await api
+      .post("/posts/add/", formData)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+    return savedPost;
+  };
+  deletePost = async (id) => {
+    const response = await api
+      .delete("/posts/delete/" + id + "/")
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+    return response;
+  };
 }
