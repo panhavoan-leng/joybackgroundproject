@@ -1,4 +1,6 @@
-#!/Users/sandhyashrestha/Desktop/Cybershop/backend/env/bin/python3
+#!/bin/sh
+'''exec' "/Users/musubimanagement/Desktop/students or reference projects/joybackgroundproject/backend/env/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
